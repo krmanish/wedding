@@ -57,4 +57,4 @@ def start_app():
 
 if __name__ == '__main__':
     app = start_app()
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=9001, threaded=True)
