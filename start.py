@@ -55,6 +55,6 @@ def start_app():
 
     return app
 
-
-app = start_app()
-app.run()
+if __name__ == '__main__':
+    app = start_app()
+    app.run(host='0.0.0.0', port=80)
