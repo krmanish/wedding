@@ -10,7 +10,7 @@ ROOT = pathlib.Path(__file__).parent
 templates_dirname = ROOT / config.TEMPLATES_DIRNAME
 
 wed_app = Flask(__name__, template_folder=templates_dirname)
-wed_app.config.from_object(config.AppConfig)
+wed_app.config.from_object(config.DevConfig)
 db = SQLAlchemy(wed_app)
 
 def start_app():

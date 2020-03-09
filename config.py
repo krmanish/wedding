@@ -1,21 +1,18 @@
 import os
 
-DEBUG = True
 
 # export DATABASE_URL = f'{DB.type}://{DB.username}:{DB.password}@{DB.host}/{DB.name}'
-
 TEMPLATES_DIRNAME = 'templates'
 
 class DB:
-    type = 'postgresql'
+    typ = 'postgresql'
     name = 'festival'
     username = 'wedding'
     password = 'wedding'
     host = 'localhost'
 
 
-class AppConfig(object):
-    DEBUG = DEBUG
+class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'This is mahi first wedding project... Use it w1s3ly.'
     USER_APP_NAME = "Festival On"
@@ -24,3 +21,18 @@ class AppConfig(object):
     USER_REQUIRE_RETYPE_PASSWORD = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
+
+class ProductionConfig(Config):
+    DEBUG = False
+
+
+class DevConfig(Config):
+    DEBUG = True
+    DEVELOPMENT = True
+
+
+class TestingConfig(Config):
+    DEBUG = True
+    TESTING = True
+
