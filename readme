@@ -1,0 +1,16 @@
+
+Heroku Setup:
+    heroku create mahiwedsmanish --buildpack heroku/python
+    heroku git:remote -a mahiwedsmanish
+
+    heroku config:set APP_SETTINGS=config.AppConfig --remote heroku
+    heroku addons:create heroku-postgresql:hobby-dev --app mahiwedsmanish
+
+
+Clear cache:
+    $ heroku plugins:install heroku-repo
+    $ heroku repo:purge_cache -a mahiwedsmanish
+    $ git commit --allow-empty -m "Purge cache"
+    $ git push heroku master
+
+
