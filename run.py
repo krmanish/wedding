@@ -48,11 +48,12 @@ def start_app():
 
     db.create_all()
 
-    @wed_app.route('/')
-    def index():
-        # String-based templates
-        return  render_template('index.html')
 
+@wed_app.route('/')
+def index():
+    # String-based templates
+    return "Hello World"
+    #return  render_template('index.html')
 
 if __name__ == '__main__':
     wed_app = start_app()
