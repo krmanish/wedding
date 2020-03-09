@@ -52,8 +52,8 @@ def start_app():
 @wed_app.route('/')
 def index():
     # String-based templates
-    return "Hello World"
-    #return  render_template('index.html')
+    #return "Hello World"
+    return  render_template('index.html')
 
 if __name__ == '__main__':
     wed_app = start_app()
