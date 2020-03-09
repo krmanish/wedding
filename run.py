@@ -9,12 +9,12 @@ import config
 ROOT = pathlib.Path(__file__).parent
 templates_dirname = ROOT / config.TEMPLATES_DIRNAME
 
+wed_app = Flask(__name__, template_folder=templates_dirname)
+wed_app.config.from_object(config.AppConfig)
+db = SQLAlchemy(wed_app)
 
 def start_app():
 
-    app = Flask(__name__, template_folder=templates_dirname)
-    app.config.from_object(config.AppConfig)
-    db = SQLAlchemy(app)
 
     class Product(db.Model):
         __tablename__ = 'product'
@@ -48,13 +48,13 @@ def start_app():
 
     db.create_all()
 
-    @app.route('/')
+    @wed_app.route('/')
     def index():
         # String-based templates
         return  render_template('index.html')
 
-    return app
 
 if __name__ == '__main__':
-    app = start_app()
-    app.run(host='0.0.0.0', port=9001, threaded=True)
+    wed_app = start_app()
+    wed_app.run(threaded=True)
+
