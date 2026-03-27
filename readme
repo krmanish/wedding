@@ -1,3 +1,7 @@
+Swagger UI: http://localhost:8000/swagger
+ReDoc: http://localhost:8000/redoc
+OpenAPI JSON: http://localhost:8000/openapi.json
+Root health check: http://localhost:8000/
 
 Heroku Setup:
     heroku create youwedsme --buildpack heroku/python

@@ -3,3 +3,5 @@ Flask-SQLAlchemy==2.4.1
 psycopg2==2.8.4
 WTForm==1.0
 gunicorn==20.0.4
+# FastAPI backend dependency for sqlmodel (used by backend/main.py)
+sqlmodel==0.0.8

@@ -14,7 +14,19 @@ from models import AdminUser, WeddingPage, Guest, OTPCode, Comment, Gift, Photo
 DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///./wedding.db')
 engine = create_engine(DATABASE_URL, echo=True)
 
-app = FastAPI(title='Wedding Invite API')
+app = FastAPI(
+    title='Wedding Invite API',
+    description='Wedding invitation API with admin management, guest invites, comments, gifts, and photo uploads.',
+    version='1.0.0',
+    docs_url='/swagger',
+    redoc_url='/redoc',
+    openapi_url='/openapi.json',
+)
+
+@app.get('/', include_in_schema=False)
+def root():
+    """Root endpoint to confirm server is running and redirect to Swagger UI in docs browser."""
+    return {'message': 'Wedding Invite API running. See Swagger docs at /swagger'}
 
 app.add_middleware(
     CORSMiddleware,
@@ -50,7 +62,7 @@ class AdminLogin(BaseModel):
 
 class WeddingCreate(BaseModel):
     couple_name: str
-    slug: constr(regex='^[a-z0-9-]+$')
+    slug: constr(pattern='^[a-z0-9-]+$')
     theme: str
     venue: str
     description: str
