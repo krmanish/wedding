@@ -1,10 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  Paper,
+} from '@mui/material';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('admin123');
+  const [password, setPassword] = useState('admin');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -20,14 +29,50 @@ export default function AdminLogin() {
   };
 
   return (
-    <div>
-      <h2>Admin Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Username<br /><input value={username} onChange={(e) => setUsername(e.target.value)} /></label>
-        <label>Password<br /><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+    <Container maxWidth="sm" sx={{ py: 8 }}>
+      <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+        <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 1, color: '#d32f2f', textAlign: 'center' }}>
+          Admin Login
+        </Typography>
+        <Typography variant="body2" sx={{ textAlign: 'center', mb: 3, color: 'textSecondary' }}>
+          Sign in to manage wedding pages and guests
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <TextField
+              label="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              fullWidth
+              variant="outlined"
+            />
+            {error && <Alert severity="error">{error}</Alert>}
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: '#d32f2f',
+                fontWeight: 'bold',
+                py: 1.5,
+                '&:hover': {
+                  backgroundColor: '#b71c1c',
+                },
+              }}
+            >
+              Login
+            </Button>
+          </Box>
+        </form>
+      </Paper>
+    </Container>
   );
 }

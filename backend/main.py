@@ -50,7 +50,7 @@ def on_startup():
     SQLModel.metadata.create_all(engine)
     with Session(engine) as session:
         if not session.exec(select(AdminUser).where(AdminUser.username == 'admin')).first():
-            admin = AdminUser(username='admin', hashed_password='admin123')
+            admin = AdminUser(username='admin', hashed_password='admin')
             session.add(admin)
             session.commit()
 
