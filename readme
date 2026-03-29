@@ -30,5 +30,5 @@ If npx is unavailable, install Node.js from https://nodejs.org/ and rerun comman
 
 
 
-Careful
+Caution
 Window to fix for npn issue Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
